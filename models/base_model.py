@@ -25,7 +25,7 @@ class BaseModel:
         return dictionary
 
     def save(self):
-        """save new update date"""
+        """save new update date""" 
         self.updated_at = datetime.datetime.now()
 
     def __str__(self):
