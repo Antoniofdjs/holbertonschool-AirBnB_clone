@@ -9,12 +9,24 @@ import datetime
 
 class BaseModel:
 
-    def __init__(self):
-        id = uuid.uuid4()
+    def __init__(self, *args, **kwargs):
 
-        self.id = str(id)
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
+        date_format = '%Y-%m-%dT%H:%M:%S.%f'
+        kwargs.pop('__class__', None)  # __class__ removed from kwargs
+        if kwargs:
+            for attribute, value in kwargs.items():
+                # Check date keys to remove isoformat from value
+                if attribute == "created_at" or attribute == "updated_at":
+                    setattr(self, attribute, datetime.datetime.strptime(
+                        value, date_format))
+                else:
+                    setattr(self, attribute, value)
+        else:
+            id = uuid.uuid4()
+
+            self.id = str(id)
+            self.created_at = datetime.datetime.now()
+            self.updated_at = datetime.datetime.now()
 
     def to_dict(self):
         """returns dictionary of keys/values of __dict__ of the instance:"""
@@ -25,7 +37,7 @@ class BaseModel:
         return dictionary
 
     def save(self):
-        """save new update date""" 
+        """save new update date"""
         self.updated_at = datetime.datetime.now()
 
     def __str__(self):
