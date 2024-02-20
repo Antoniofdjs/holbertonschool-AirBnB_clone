@@ -38,7 +38,7 @@ class Tests_uni(unittest.TestCase):
         """test the updated_at with save method"""
         obj = BaseModel()
         old_updated_date = obj.updated_at
-        new_updated_date = obj.save
+        new_updated_date = obj.save()
         self.assertNotEqual(new_updated_date, old_updated_date)
 
 
