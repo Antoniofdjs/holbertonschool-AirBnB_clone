@@ -2,10 +2,18 @@
 """Test for base_model"""
 import unittest
 import uuid
+import datetime
 from models.base_model import BaseModel
 
 
 class Tests_uni(unittest.TestCase):
+
+    def test_save(self):
+        obj = BaseModel()
+        updated_at = obj.updated_at
+        obj.save()
+        self.assertNotEqual(updated_at, obj.updated_at)
+        self.assertFalse(obj.updated_at is datetime)
 
     def test_init(self):
         """Test creations and init"""
@@ -33,13 +41,6 @@ class Tests_uni(unittest.TestCase):
         another_model = BaseModel()
         id = another_model.id
         self.assertEqual(str(another_model), "[BaseModel] ({}) {}".format(id, another_model.__dict__))
-
-    def test_save(self):
-        """test the updated_at with save method"""
-        obj = BaseModel()
-        old_updated_date = obj.updated_at
-        new_updated_date = obj.save()
-        self.assertNotEqual(new_updated_date, old_updated_date)
 
 
 if __name__ == '__main__':
