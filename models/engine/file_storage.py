@@ -13,14 +13,20 @@ class FileStorage:
     __objects = {}
 
     def all(self):
+        """Returns dictionary of objects {name.id: obj}"""
         return self.__objects
 
     def new(self, obj):
+        """Add new instance to dictionary of objects"""
         name_class = obj.__class__.__name__
         key_obj = str(name_class + "." + obj.id)
         self.__objects[key_obj] = obj
 
     def save(self):
+        """ Dump dictionary __objects into file but 
+            we take dictionary from object
+            {classname.id:{object dictionary...},classname.id:{obj dict...}}
+        """
         with open(self.__file_path, 'w') as f:
             dictionary_for_json = {}
             for key, obj in self.__objects.items():
@@ -28,6 +34,9 @@ class FileStorage:
             json.dump(dictionary_for_json, f)
 
     def reload(self):
+        """ Loads the json file back into __objects
+            creating the instances again and saving them into __objects
+        """
         from models.base_model import BaseModel
         try:
             with open(self.__file_path, 'r') as f:
