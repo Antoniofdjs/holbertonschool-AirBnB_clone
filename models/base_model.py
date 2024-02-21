@@ -22,6 +22,7 @@ class BaseModel:
                         value, date_format))
                 else:
                     setattr(self, attribute, value)
+            storage.new(self)
         else:
             id = uuid.uuid4()
 
