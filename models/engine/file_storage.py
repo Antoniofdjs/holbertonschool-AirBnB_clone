@@ -17,7 +17,7 @@ class FileStorage:
         return self.__objects
 
     def new(self, obj):
-        """Add new instance to dictionary of objects"""
+        """Add new instance to dictionary of __objects"""
         name_class = obj.__class__.__name__
         key_obj = str(name_class + "." + obj.id)
         self.__objects[key_obj] = obj
