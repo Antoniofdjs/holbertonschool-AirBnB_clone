@@ -23,8 +23,8 @@ class FileStorage:
         self.__objects[key_obj] = obj
 
     def save(self):
-        """ Dump dictionary __objects into file but 
-            we take dictionary from object
+        """ Dump dictionary __objects into file
+            we take dictionary from object instead of putting object
             {classname.id:{object dictionary...},classname.id:{obj dict...}}
         """
         with open(self.__file_path, 'w') as f:
