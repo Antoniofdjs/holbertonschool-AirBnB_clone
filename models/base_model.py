@@ -41,8 +41,8 @@ class BaseModel:
 
     def save(self):
         """save new update date"""
-        storage.save()
         self.updated_at = datetime.datetime.now()
+        storage.save()
 
     def __str__(self):
         """str representation of obj"""
