@@ -7,7 +7,6 @@ Contains the entry point of the command interpreter
 
 import cmd
 from models.base_model import BaseModel
-import json
 from models import storage
 
 class HBNBCommand(cmd.Cmd):
@@ -55,7 +54,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_destroy(self, arg):
-        """Deletes an instance based on the class name and id """
+        """Delete an instance based on the class name and id """
         arg = arg.split()
         if not arg:
             print("** class name missing **")
@@ -70,22 +69,37 @@ class HBNBCommand(cmd.Cmd):
                 del dict_from_storage[name_id]
             else:
                 print("** no instance found **")
-            #  Reload the dict back into file
-            storage.save()
+
+            storage.save()  # Save changes to json
 
     def do_update(self, arg):
         """update <class name> <id> <attribute name> <attribute value>"""
         arg = arg.split()
+        total_arguments = len(arg)
         argc_dict = {
             0: "** class name missing **",
             1: "** instance id missing **",
             2: "** attribute name missing **",
             3: "** value missing **"
             }
-        if len(arg) in argc_dict:
-            print(f"{argc_dict[len(arg)]}")
+        if total_arguments in argc_dict:  # Prints error messages for argc
+            print(f"{argc_dict[total_arguments]}")
         else:
-            print("do stuff")
+            if arg[0] != 'BaseModel':
+                print("** class doesn't exist **")
+            else:
+                dict_from_storage = storage.all()  # Get dict from storage
+                name_id = arg[0] + "." + arg[1]
+                attribute = arg[2]
+                atribute_value = arg[3]
+
+                if name_id in dict_from_storage:
+                    obj = dict_from_storage[name_id]  # Get object
+                    setattr(obj, attribute, atribute_value)
+                    obj.save()  # Save new update date and storage changes
+                else:
+                    print("** no instance found **")    
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
