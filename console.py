@@ -8,6 +8,7 @@ Contains the entry point of the command interpreter
 import cmd
 from models.base_model import BaseModel
 import json
+from models import storage
 
 class HBNBCommand(cmd.Cmd):
 
@@ -46,18 +47,13 @@ class HBNBCommand(cmd.Cmd):
         elif len(arg) < 2:
             print("** instance id missing **")
         else:
-            try:
-                with open("file.json", 'r') as file:
-                    dict_from_json = json.load(file)
-                    name_id = arg[0] + "." + arg[1]
-                    if name_id in dict_from_json:
-                        obj_dict = dict_from_json[name_id]
-                        print(f"{BaseModel(**obj_dict)}")
-                    else:
-                        print("** no instance found **")
-            except FileNotFoundError:
-                print("** file not found **")
-    
+            dict_from_storage = storage.all()  # Load dict from storage {'name.id': object}
+            name_id = arg[0] + "." + arg[1]
+            if name_id in dict_from_storage:
+                print(f"{dict_from_storage[name_id]}")
+            else:
+                print("** no instance found **")
+
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id """
         arg = arg.split()
