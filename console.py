@@ -64,23 +64,14 @@ class HBNBCommand(cmd.Cmd):
         elif len(arg) < 2:
             print("** instance id missing **")
         else:
-            try:
-                with open("file.json", 'r') as file:
-                    dict_from_json = json.load(file)
-                    name_id = arg[0] + "." + arg[1]
-                    if name_id in dict_from_json:
-                        del dict_from_json[name_id]
-                    else:
-                        print("** no instance found **")
-            except FileNotFoundError:
-                print("** file not found **")
-
+            dict_from_storage = storage.all()  # Load dict from storage {'name.id': object}
+            name_id = arg[0] + "." + arg[1]
+            if name_id in dict_from_storage:
+                del dict_from_storage[name_id]
+            else:
+                print("** no instance found **")
             #  Reload the dict back into file
-            try:
-                with open("file.json", 'w') as file:
-                    json.dump(dict_from_json, file)
-            except FileNotFoundError:
-                print("** file not found **")
+            storage.save()
 
     def do_update(self, arg):
         """update <class name> <id> <attribute name> <attribute value>"""
