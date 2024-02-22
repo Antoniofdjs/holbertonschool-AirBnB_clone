@@ -24,12 +24,12 @@ class BaseModel:
                     setattr(self, attribute, value)
 
         else:
-            id = uuid.uuid4()
+            id = uuid.uuid4()  # Random id generator
 
             self.id = str(id)
             self.created_at = datetime.datetime.now()
             self.updated_at = datetime.datetime.now()
-            storage.new(self)
+            storage.new(self)  # Add new object to storage '__objects'
 
     def to_dict(self):
         """returns dictionary of keys/values of __dict__ of the instance:"""
