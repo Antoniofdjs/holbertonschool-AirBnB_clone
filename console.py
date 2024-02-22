@@ -79,13 +79,26 @@ class HBNBCommand(cmd.Cmd):
             except FileNotFoundError:
                 print("** file not found **")
 
-            #  Reload the data back into dictionary
+            #  Reload the dict back into file
             try:
                 with open("file.json", 'w') as file:
                     json.dump(dict_from_json, file)
             except FileNotFoundError:
                 print("** file not found **")
 
+    def do_update(self, arg):
+        """update <class name> <id> <attribute name> <attribute value>"""
+        arg = arg.split()
+        argc_dict = {
+            0: "** class name missing **",
+            1: "** instance id missing **",
+            2: "** attribute name missing **",
+            3: "** value missing **"
+            }
+        if len(arg) in argc_dict:
+            print(f"{argc_dict[len(arg)]}")
+        else:
+            print("do stuff")
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
