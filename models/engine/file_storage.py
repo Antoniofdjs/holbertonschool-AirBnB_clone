@@ -10,7 +10,7 @@ import json
 class FileStorage:
 
     __file_path = "file.json"
-    __objects = {}
+    __objects = {}  
 
     def all(self):
         """Returns dictionary of objects {name.id: obj}"""
@@ -23,7 +23,7 @@ class FileStorage:
         self.__objects[key_obj] = obj
 
     def save(self):
-        """ Dump dictionary __objects into file
+        """ Dump dictionary __objects into file.json
             we take dictionary from object instead of putting object
             {classname.id:{object dictionary...},classname.id:{obj dict...}}
         """
