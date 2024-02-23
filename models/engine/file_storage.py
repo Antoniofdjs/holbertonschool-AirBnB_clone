@@ -38,10 +38,14 @@ class FileStorage:
             creating the instances again and saving them into __objects
         """
         from models.base_model import BaseModel
+        from models.user import User
         try:
             with open(self.__file_path, 'r') as f:
                 dictionary_from_json = json.load(f)
                 for key, obj_dictionary in dictionary_from_json.items():
-                    self.__objects[key] = BaseModel(**obj_dictionary)
+                    if obj_dictionary["__class__"] == "BaseModel":
+                        self.__objects[key] = BaseModel(**obj_dictionary)
+                    elif obj_dictionary["__class__"] == "User":
+                        self.__objects[key] = User(**obj_dictionary)
         except FileNotFoundError:
             pass
