@@ -65,6 +65,7 @@ class HBNBCommand(cmd.Cmd):
                 list_of_objs.append(str(obj))
             print(list_of_objs)
         elif arg not in self.__classes_dict:
+
             print("** class doesn't exist **")
         else:
             for obj in storage.all().values():
@@ -120,14 +121,6 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     print("** no instance found **")
 
-    def do_all(self, arg):
-        """Prints all string representation of all instances"""
-        if not arg:
-            print([str(obj) for obj in storage.all().values()])
-        elif arg != "BaseModel":
-            print("** class doesn't exist **")
-        else:
-            print([str(obj) for obj in storage.all().values() if type(obj).__name__ == arg])
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
