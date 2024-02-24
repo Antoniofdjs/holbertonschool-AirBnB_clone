@@ -7,15 +7,41 @@ Contains the entry point of the command interpreter
 
 import cmd
 from models.base_model import BaseModel
-from models import storage
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+from models import storage
 import shlex  # Tokenizes " strings like this" as one argument
 
 
 class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
-    __classes_dict = {"BaseModel": BaseModel, "User": User}
+    __classes_dict = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Place": Place,
+        "Review": Review
+        }
+    __place_dict = {
+        "city_id": str,
+        "user_id": str,
+        "name": str,
+        "description": str,
+        "number_rooms": int,
+        "number_bathrooms": int,
+        "max_guest": int,
+        "price_by_night": int,
+        "latitude": float,
+        "longitude": float,
+        "amenity_ids": []
+    }
 
     def emptyline(self):
         pass
@@ -109,14 +135,25 @@ class HBNBCommand(cmd.Cmd):
             if arg[0] not in self.__classes_dict:  # Check if class exists
                 print("** class doesn't exist **")
             else:
+                class_name = self.__classes_dict[arg[0]]
                 dict_from_storage = storage.all()  # Get dict from storage
                 name_id = arg[0] + "." + arg[1]
                 attribute = arg[2]
-                atribute_value = arg[3]
+                attribute_value = arg[3]
 
                 if name_id in dict_from_storage:
                     obj = dict_from_storage[name_id]  # Get object
-                    setattr(obj, attribute, atribute_value)
+
+                    """
+                    Classes have class attributes with reserved values
+                    we must cast the new value to the type of original
+                    class attribute
+                    """
+
+                    if hasattr(class_name, attribute):
+                        attribute_type = type(getattr(class_name, attribute))
+                        attribute_value = attribute_type(attribute_value)
+                    setattr(obj, attribute, attribute_value)
                     obj.save()  # Save new update date and storage changes
                 else:
                     print("** no instance found **")
