@@ -11,7 +11,7 @@ class FileStorage:
 
     __file_path = "file.json"
     __objects = {}
-
+   
     def all(self):
         """Returns dictionary of objects {name.id: obj}"""
         return self.__objects
@@ -39,15 +39,31 @@ class FileStorage:
         """
         from models.base_model import BaseModel
         from models.user import User
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.review import Review
+
+
+        __classes_dict = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Place": Place,
+        "Review": Review
+        }
+
         try:
             with open(self.__file_path, 'r') as f:
                 dictionary_from_json = json.load(f)
 
                 for key, obj_dictionary in dictionary_from_json.items():
-                    if obj_dictionary["__class__"] == "BaseModel":
-                        self.__objects[key] = BaseModel(**obj_dictionary)
-                    elif obj_dictionary["__class__"] == "User":
-                        self.__objects[key] = User(**obj_dictionary)
+                    class_name = obj_dictionary["__class__"]
+                    class_to_call = __classes_dict[class_name]
+                    self.__objects[key] = class_to_call(**obj_dictionary)
 
         except FileNotFoundError:
             pass
