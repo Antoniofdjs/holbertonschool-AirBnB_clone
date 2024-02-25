@@ -71,27 +71,39 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, arg):
-        """ Prints all string representation of all instances;
-            In case of "<classname>.count()" special arg is used
-            From default method, we receive a "__special__case__"
-            This will return a list instead of printing it
-            Default will receive the list and print len
-        """
-        arg = shlex.split(arg)
+        """ Prints all string representation of all instances"""
         list_of_objs = []
         if not arg:
             for obj in storage.all().values():  # Gets all class objects
                 list_of_objs.append(str(obj))
             print(list_of_objs)
-        elif arg[0] not in self.__classes_dict:
+        elif arg not in self.__classes_dict:
             print("** class doesn't exist **")
         else:
             for obj in storage.all().values():
-                if type(obj).__name__ == arg[0]:  # Add objs of specified class
+                if type(obj).__name__ == arg:  # Add objs of specified class
                     list_of_objs.append(str(obj))
-            if len(arg) > 1 and arg[1] == "__special__case__":
-                return list_of_objs
             print(list_of_objs)
+
+    def count(self, arg):
+        """
+            Special input case <classname>.count()
+            Prints the total number of instances of a class
+            If class not specified, will print total instances
+        """
+        list_of_objs = []
+        if not arg:
+            for obj in storage.all().values():  # Gets all class objects
+                list_of_objs.append(obj)
+            if len(list_of_objs) > 0:
+                print(f"{len(list_of_objs)}")
+        elif arg not in self.__classes_dict:  # <<<<<<< here
+            print("** class doesn't exist **")
+        else:
+            for obj in storage.all().values():  # Gets class objects
+                if type(obj).__name__ == arg:
+                    list_of_objs.append(str(obj))
+            print(f"{len(list_of_objs)}")
 
     def do_destroy(self, arg):
         """Delete an instance based on the class name and id """
@@ -153,9 +165,15 @@ class HBNBCommand(cmd.Cmd):
                     print("** no instance found **")
 
     def default(self, line):
+        """
+            Default will take care of special inputs
+            usage: <classname>.<command>()
+            example: User.all() ----> will show all user instances
+            If not command matches, syntax error message
+        """
         commands_dict = {
             "all()": self.do_all,
-            "count()": self.do_all
+            "count()": self.count
             }
 
         #  Still woking this part below...
@@ -165,21 +183,12 @@ class HBNBCommand(cmd.Cmd):
             command = arguments[1]
 
             if command in commands_dict:
-                if command == "all()":  # Call do_all method
-                    commands_dict[command](class_name)
-
-                elif command == "count()":  # Call do_all with new arg
-                    new_arg = class_name + " " + "__special__case__"
-                    list_of_objs = commands_dict[command](new_arg)  # do_all
-                    if list_of_objs is None:
-                        pass  # Class doesnt exist msg will print
-                    else:
-                        print(f"{len(list_of_objs)}")
+                commands_dict[command](class_name)  # Call methods
 
             else:
-                self.do_help(str(line))  # Command doesnt exist
+                print(f"** Unknown syntax: {line} **")
         else:
-            self.do_help(str(line))  # Command doesnt exist
+            print(f"** Unknown syntax: {line} **")
 
 
 if __name__ == "__main__":
