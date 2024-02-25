@@ -1,8 +1,11 @@
 #!/usr/bin/python3
 
 """
-The console v:0.1
+The console v: 1.0
 Contains the entry point of the command interpreter
+It handles special cases and basic commands
+An example of Usage: <command> <classname> <id>
+Example of special case: <classname>.<command>()
 """
 
 import cmd
@@ -20,6 +23,8 @@ import shlex  # Tokenizes " strings like this" as one argument
 class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
+
+    # This Dict contains all clasess availabe for faster search and call
     __classes_dict = {
         "BaseModel": BaseModel,
         "User": User,
@@ -31,30 +36,51 @@ class HBNBCommand(cmd.Cmd):
         }
 
     def emptyline(self):
+        """
+            Does nothing when detecting empty line
+        """
         pass
 
     def do_quit(self, arg):
-        """quit command to exit the program"""
+        """
+            quit command to exit the program
+        """
+
         return True
 
     def do_EOF(self, arg):
-        """ Ctrl + D to exit the program"""
+        """
+            Ctrl + D to exit the program
+        """
+
         print("")
         return True
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel"""
+        """
+            Creates a new instance of the specified class
+            @arg will contain the class name
+
+            Example: create <classname>
+        """
+
         if not arg:
             print("** class name missing **")
         elif arg not in self.__classes_dict:
             print("** class doesn't exist **")
         else:
             new_model = self.__classes_dict[arg]()  # Create instance
-            new_model.save()
+            new_model.save()  # Save changes, json file and updated_at date
             print(f"{new_model.id}")
 
     def do_show(self, arg):
-        """ Print string rprsnt of an instance based on the class and id"""
+        """
+            Print string representation of an instance
+            based on the class and id
+
+            Example: show <classname> <id>
+        """
+
         arg = shlex.split(arg)
         if not arg:
             print("** class name missing **")
@@ -71,7 +97,15 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, arg):
-        """ Prints all string representation of all instances"""
+        """
+            Prints list of string representation of all instances if
+            no class specified.
+            Otherwise just instances of specified class
+
+            Example: all <classname>
+            Example: all
+        """
+
         list_of_objs = []
         if not arg:
             for obj in storage.all().values():  # Gets all class objects
@@ -87,10 +121,14 @@ class HBNBCommand(cmd.Cmd):
 
     def count(self, arg):
         """
-            Special input case <classname>.count()
+            Special input case
             Prints the total number of instances of a class
             If class not specified, will print total instances
+
+            Example: <classname>.count()
+            Example: .count()
         """
+
         list_of_objs = []
         if not arg:
             for obj in storage.all().values():  # Gets all class objects
@@ -106,7 +144,12 @@ class HBNBCommand(cmd.Cmd):
             print(f"{len(list_of_objs)}")
 
     def do_destroy(self, arg):
-        """Delete an instance based on the class name and id """
+        """
+            Delete an instance based on the class name and id
+
+            Example: destroy <classname> <id>
+        """
+
         arg = shlex.split(arg)  # Tokenizes "strings like this" as one argument
         if not arg:
             print("** class name missing **")
@@ -125,9 +168,16 @@ class HBNBCommand(cmd.Cmd):
             storage.save()  # Save changes to json
 
     def do_update(self, arg):
-        """update <class name> <id> <attribute name> <attribute value>"""
+        """
+            Update values for an attribute of a specified instance from a class
+            These are the ones that come from the __dict__ of the object
+
+            Example: update <classname> <id> <attribute_name> <value>
+        """
+
         arg = shlex.split(arg)
         total_arguments = len(arg)
+        # Dict of error messages for total arguments received
         argc_dict = {
             0: "** class name missing **",
             1: "** instance id missing **",
@@ -135,7 +185,7 @@ class HBNBCommand(cmd.Cmd):
             3: "** value missing **"
             }
 
-        if total_arguments in argc_dict:  # Prints error messages for argc
+        if total_arguments in argc_dict:  # Print error msg from argc_dict
             print(f"{argc_dict[total_arguments]}")
         else:
             if arg[0] not in self.__classes_dict:  # Check if class exists
@@ -143,7 +193,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 class_name = self.__classes_dict[arg[0]]
                 dict_from_storage = storage.all()  # Get dict from storage
-                name_id = arg[0] + "." + arg[1]
+                name_id = arg[0] + "." + arg[1]  # "<classname>.<id>"
                 attribute = arg[2]
                 attribute_value = arg[3]
 
@@ -156,9 +206,10 @@ class HBNBCommand(cmd.Cmd):
                     class attribute
                     """
 
-                    if hasattr(class_name, attribute):
+                    if hasattr(class_name, attribute):  # Cast attribute_value
                         attribute_type = type(getattr(class_name, attribute))
                         attribute_value = attribute_type(attribute_value)
+
                     setattr(obj, attribute, attribute_value)
                     obj.save()  # Save new update date and storage changes
                 else:
@@ -167,18 +218,19 @@ class HBNBCommand(cmd.Cmd):
     def default(self, line):
         """
             Default will take care of special inputs
+            If no command matches, syntax error message
+
             usage: <classname>.<command>()
-            example: User.all() ----> will show all user instances
-            If not command matches, syntax error message
+            example: User.all()
         """
         commands_dict = {
             "all()": self.do_all,
             "count()": self.count
             }
 
-        #  Still woking this part below...
         arguments = line.split(".")  # split line by "."
-        if len(arguments) > 1:
+
+        if len(arguments) > 1:  # assign arguments to variables
             class_name = arguments[0]
             command = arguments[1]
 
