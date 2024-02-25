@@ -8,7 +8,7 @@ import unittest
 from models.user import User
 
 
-class test_state(unittest.TestCase):
+class test_user(unittest.TestCase):
     '''
         Class User Unittest
     '''
