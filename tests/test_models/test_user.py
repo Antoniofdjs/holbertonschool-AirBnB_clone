@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-    test_state.py
+    test_user.py
     
     Unittest
 '''
@@ -10,7 +10,7 @@ from models.user import User
 
 class test_state(unittest.TestCase):
     '''
-        Class State Unittest
+        Class User Unittest
     '''
     def test_user(self):
         u = User()
