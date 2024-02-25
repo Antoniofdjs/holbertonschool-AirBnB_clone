@@ -84,19 +84,26 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, arg):
-        """Prints all string representation of all instances"""
+        """ Prints all string representation of all instances;
+            In case of "<classname>.count()" special arg is used
+            From default method, we receive a "__special__case__"
+            This will return a list instead of printing it
+            Default will receive the list and print len
+        """
+        arg = shlex.split(arg)
         list_of_objs = []
         if not arg:
             for obj in storage.all().values():  # Gets all class objects
                 list_of_objs.append(str(obj))
             print(list_of_objs)
-        elif arg not in self.__classes_dict:
-
+        elif arg[0] not in self.__classes_dict:
             print("** class doesn't exist **")
         else:
             for obj in storage.all().values():
-                if type(obj).__name__ == arg:  # Adds objs of specified class
+                if type(obj).__name__ == arg[0]:  # Add objs of specified class
                     list_of_objs.append(str(obj))
+            if len(arg) > 1 and arg[1] == "__special__case__":
+                return list_of_objs
             print(list_of_objs)
 
     def do_destroy(self, arg):
@@ -157,6 +164,35 @@ class HBNBCommand(cmd.Cmd):
                     obj.save()  # Save new update date and storage changes
                 else:
                     print("** no instance found **")
+
+    def default(self, line):
+        commands_dict = {
+            "all()": self.do_all,
+            "count()": self.do_all
+            }
+
+        #  Still woking this part below...
+        arguments = line.split(".")  # split line by "."
+        if len(arguments) > 1:
+            class_name = arguments[0]
+            command = arguments[1]
+
+            if command in commands_dict:
+                if command == "all()":  # Call do_all method
+                    commands_dict[command](class_name)
+
+                elif command == "count()":  # Call do_all with new arg
+                    new_arg = class_name + " " + "__special__case__"
+                    list_of_objs = commands_dict[command](new_arg)  # do_all
+                    if list_of_objs is None:
+                        pass  # Class doesnt exist msg will print
+                    else:
+                        print(f"{len(list_of_objs)}")
+
+            else:
+                self.do_help(str(line))  # Command doesnt exist
+        else:
+            self.do_help(str(line))  # Command doesnt exist
 
 
 if __name__ == "__main__":
