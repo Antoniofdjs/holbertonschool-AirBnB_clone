@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
 
-""" serializes instances to a JSON file
-    and deserializes JSON file to instances
+""" Serializes instances to a JSON file
+    and deserializes JSON file back to instances
 """
 import json
 
@@ -11,7 +11,7 @@ class FileStorage:
 
     __file_path = "file.json"
     __objects = {}
-   
+
     def all(self):
         """Returns dictionary of objects {name.id: obj}"""
         return self.__objects
@@ -24,9 +24,12 @@ class FileStorage:
 
     def save(self):
         """ Dump dictionary __objects into file.json
-            we take dictionary from object instead of putting object
-            {classname.id:{object dictionary...},classname.id:{obj dict...}}
+            we take the dictionary from the instance and put it as the value
+
+            Example:
+            { classname.id:{object dictionary...}, classname.id:{obj dict...} }
         """
+
         with open(self.__file_path, 'w') as f:
             dictionary_for_json = {}
             for key, obj in self.__objects.items():
@@ -34,9 +37,12 @@ class FileStorage:
             json.dump(dictionary_for_json, f)
 
     def reload(self):
-        """ Loads the json file back into __objects
-            creating the instances again and saving them into __objects
         """
+            Loads the json file back into __objects
+            creating the instances again and saving them into __objects
+            This ensures that we have all our objects again locally
+        """
+
         from models.base_model import BaseModel
         from models.user import User
         from models.state import State
@@ -45,16 +51,16 @@ class FileStorage:
         from models.place import Place
         from models.review import Review
 
-
+        # Dict contains all classes for fast search and calls
         __classes_dict = {
-        "BaseModel": BaseModel,
-        "User": User,
-        "State": State,
-        "City": City,
-        "Amenity": Amenity,
-        "Place": Place,
-        "Review": Review
-        }
+            "BaseModel": BaseModel,
+            "User": User,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Place": Place,
+            "Review": Review
+            }
 
         try:
             with open(self.__file_path, 'r') as f:
