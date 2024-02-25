@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-The console v: 1.0
+The console v: 1.0.0
 Contains the entry point of the command interpreter
 It handles special cases and basic commands
 An example of Usage: <command> <classname> <id>
