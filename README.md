@@ -77,7 +77,12 @@ be9d66bf-a5a3-4c5d-8de5-6afb86bad424
 
 ## Resources
 
- - *[Example_resource](link_here)*
+ - *[CMD Module](https://docs.python.org/3/library/cmd.html)*
+- *[UUID Module](https://docs.python.org/3/library/uuid.html)*
+- *[Datetime Module](https://docs.python.org/3/library/datetime.html)*
+- *[args/kwargs](https://yasoob.me/2013/08/04/args-and-kwargs-in-python-explained/)*
+- *[Python Test Sheets](https://www.pythonsheets.com/notes/python-tests.html)*
+
 
 
 ## Credits
