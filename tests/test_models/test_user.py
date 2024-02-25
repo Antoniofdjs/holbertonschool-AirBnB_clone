@@ -1,14 +1,19 @@
 #!/usr/bin/python3
-
-
+'''
+    test_state.py
+    
+    Unittest
+'''
 import unittest
 from models.user import User
 from models.base_model import BaseModel
 
 
-class TestCity(unittest.TestCase):
-
-    def test_stateid_name(self):
+class test_state(unittest.TestCase):
+    '''
+        Class State Unittest
+    '''
+    def test_user(self):
         u = User()
         u.email = "@test"
         u.password= "123"
@@ -27,6 +32,6 @@ class TestCity(unittest.TestCase):
         self.assertNotEqual(u1.id, u2.id)
         self.assertIsInstance(u1.id, str)
 
-if __name__ == '__main__':
 
+if __name__ == '__main__':
     unittest.main()
