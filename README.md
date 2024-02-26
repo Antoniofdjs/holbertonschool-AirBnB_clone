@@ -1,5 +1,9 @@
 # Holberton-AirBnB_clone
 
+## Description
+The Airbnb Console is a command-line interface (CLI) application designed to manage Airbnb-like property listings and user interactions. This console provides functionalities to create, retrieve, update, and delete data related to various instances of the Airbnb ecosystem, including users, properties, reviews, places, and more.
+
+
 ### Table of Contents
 
 - [Description](#description)
@@ -10,10 +14,6 @@
 - [Resources](#resources)
 - [Credits](#credits)
   
-## Description
-The Airbnb Console is a command-line interface (CLI) application designed to manage Airbnb-like property listings and user interactions. This console provides functionalities to create, retrieve, update, and delete data related to various instances of the Airbnb ecosystem, including users, properties, reviews, places, and more.
-
-
 
 ## Files
 
@@ -21,7 +21,7 @@ The Airbnb Console is a command-line interface (CLI) application designed to man
 |------------------------|---------------------------------------------------------|
 | *README.md*     | Contains the description of the project and usage instructions. |
 | [*console.py*](console.py)| Command interpreter using the cmd module.|                      |
-| *file_storage.py*  | Serializes instances to a JSON file and deserializes JSON file back to instances.|  
+| [*file_storage.py*](models/engine/file_storage.py) | Serializes instances to a JSON file and deserializes JSON file back to instances.|  
 | *base_model.py*     | Super class serving as the base for all subclasses.   |
 | *user.py*     | Sub class representing User instance. |
 
