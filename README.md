@@ -4,7 +4,7 @@
 
 - [Description](#description)
 - [Files](#files)
-- [Commands](commands)
+- [Commands](#commands)
 - [Use](#use)
 - [Examples](#examples)
 - [Resources](#resources)
