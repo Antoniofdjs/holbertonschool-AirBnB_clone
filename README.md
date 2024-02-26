@@ -22,8 +22,13 @@ The Airbnb Console is a command-line interface (CLI) application designed to man
 | *README.md*     | Contains the description of the project and usage instructions. |
 | [*console.py*](console.py)| Command interpreter using the cmd module.|                      |
 | [*file_storage.py*](models/engine/file_storage.py) | Serializes instances to a JSON file and deserializes JSON file back to instances.|  
-| *base_model.py*     | Super class serving as the base for all subclasses.   |
-| *user.py*     | Sub class representing User instance. |
+| [*base_model.py*](models/base_model.py) | Super class serving as the base for all subclasses.   |
+| [*user.py*](models/user.py) | Sub class representing User instance. |
+| [*city.py*](models/city.py) | Sub class representing City instance. |
+| [*place.py*](models/place.py) | Sub class representing Place instance.|
+| [*review.py*](models/review.py) | Sub class representing Review instance.|
+| [*state.py*](models/state.py) | Sub class representing State instance.|
+| [*amenity.py*](models/amenity.py) | Sub class representing User instance. |
 
 
 ## Commands
@@ -35,7 +40,7 @@ The Airbnb Console is a command-line interface (CLI) application designed to man
 | `all`   | Prints list of string representation of all instances or just from specified class                     |
 | `destroy`| Delete an instance based on the class name and id                                                      |
 | `update`| Update values for an attribute of a specified instance from a class                                    |
-| `count` | Prints total number of instances of a class or all instances                                           |
+| `count()` | Prints total number of instances of a class or all instances                                           |
 
 ## Use 
 To start using the console...
