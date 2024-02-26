@@ -3,6 +3,7 @@
 ## Description
 The Airbnb Console is a command-line interface (CLI) application designed to manage Airbnb-like property listings and user interactions. This console provides functionalities to create, retrieve, update, and delete data related to various instances of the Airbnb ecosystem, including users, properties, reviews, places, and more.
 
+At the core of the application lies the FileStorage engine, implemented through the file_storage.py module. This engine is managing data storage and retrieval operations. It handles the serialization and deserialization of instances to and from a JSON file, serving as a local database for the application. It offers functionalities such as retrieving all stored instances, saving the current state of data to the JSON file, and reloading data from the file into memory.
 
 ### Table of Contents
 
