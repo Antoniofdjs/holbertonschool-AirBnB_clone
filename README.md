@@ -20,7 +20,7 @@ The Airbnb Console is a command-line interface (CLI) application designed to man
 | Files                  | Content                                           |
 |------------------------|---------------------------------------------------------|
 | *README.md*     | Contains the description of the project and usage instructions. |
-| [*console.py*](relative/path/to/your/file)| Command interpreter using the cmd module.|                      |
+| [*console.py*](console.py)| Command interpreter using the cmd module.|                      |
 | *file_storage.py*  | Serializes instances to a JSON file and deserializes JSON file back to instances.|  
 | *base_model.py*     | Super class serving as the base for all subclasses.   |
 | *user.py*     | Sub class representing User instance. |
