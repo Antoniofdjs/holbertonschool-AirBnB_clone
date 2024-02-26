@@ -135,7 +135,7 @@ class HBNBCommand(cmd.Cmd):
                 list_of_objs.append(obj)
             if len(list_of_objs) > 0:
                 print(f"{len(list_of_objs)}")
-        elif arg not in self.__classes_dict:  # <<<<<<< here
+        elif arg not in self.__classes_dict:
             print("** class doesn't exist **")
         else:
             for obj in storage.all().values():  # Gets class objects
