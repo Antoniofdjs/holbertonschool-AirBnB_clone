@@ -1,9 +1,11 @@
 # Holberton-AirBnB_clone
 
 ## Description
-The Airbnb Console is a command-line interface (CLI) application designed to manage Airbnb-like property listings and user interactions. This console provides functionalities to create, retrieve, update, and delete data related to various instances of the Airbnb ecosystem, including users, properties, reviews, places, and more.
+The Airbnb_clone consists of 3 major components. One of them is the command-line interface (CLI) application ***-console.py-*** designed to manage Airbnb-like property listings and user interactions. This console provides functionalities to create, retrieve, update, and delete data related to various instances of the Airbnb ecosystem, including users, properties, reviews, places, and more.
 
-At the core of the application lies the FileStorage engine, implemented through the file_storage.py module. This engine is managing data storage and retrieval operations. It handles the serialization and deserialization of instances to and from a JSON file, serving as a local database for the application. It offers functionalities such as retrieving all stored instances, saving the current state of data to the JSON file, and reloading data from the file into memory.
+At the core of the application lies the **FileStorage** engine, implemented through the ***-file_storage.py-*** module. This engine is managing data storage and retrieval operations. It handles the serialization and deserialization of instances to and from a JSON file, serving as a local database for the application. It offers functionalities such as retrieving all stored instances, saving the current state of data to the JSON file, and reloading data from the file into memory.The reload functionality is enabled by the file from: ***-models/__init__.py-***
+
+The third major component is the **BaseModel** super class, implemented through the ***-base_model.py-*** module. BaseModel allows to create multiple instances based on it self or from the other subclasses. It assigns a random generated id with UUID, the date in wich the instances was created and the date when it was last updated. Any instance created from BaseModel will be saved to the storage
 
 ### Table of Contents
 
