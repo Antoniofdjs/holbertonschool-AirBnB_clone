@@ -4,9 +4,9 @@
 
 ## Description
 
-The Airbnb_clone consists of 3 major components. One of them is the command-line interface (CLI) application **_-console.py-_** designed to manage Airbnb-like property listings and user interactions. This console provides functionalities to create, retrieve, update, and delete data related to various instances of the Airbnb ecosystem, including users, properties, reviews, places, and more.
+The Airbnb*clone consists of 3 major components. One of them is the command-line interface (CLI) application \*\**-console.py-\_\*\* designed to manage Airbnb-like property listings and user interactions. This console provides functionalities to create, retrieve, update, and delete data related to various instances of the Airbnb ecosystem, including users, properties, reviews, places, and more.
 
-At the core of the application lies the **FileStorage** engine, implemented through the **_-file_storage.py-_** module. This engine is managing data storage and retrieval operations. It handles the serialization and deserialization of instances to and from a JSON file, serving as a local database for the application. It offers functionalities such as retrieving all stored instances, saving the current state of data to the JSON file, and reloading data from the file into memory.The reload functionality is enabled by the file from: **_-models/**init**.py-_**
+At the core of the application lies the **FileStorage** engine, implemented through the **_-file_storage.py-_** module. This engine is managing data storage and retrieval operations. It handles the serialization and deserialization of instances to and from a JSON file, serving as a local database for the application. It offers functionalities such as retrieving all stored instances, saving the current state of data to the JSON file, and reloading data from the file into memory.The reload functionality is enabled by the file from: **\_-models/**init**.py-\_**
 
 The third major component is the **BaseModel** super class, implemented through the **_-base_model.py-_** module. BaseModel allows to create multiple instances based on it self or from the other subclasses. It assigns a random generated id with UUID, the date in wich the instances was created and the date when it was last updated. Any instance created from BaseModel will be saved to the storage.
 
@@ -27,7 +27,7 @@ The third major component is the **BaseModel** super class, implemented through 
 | [_README.md_](README.md)                           | Contains the description of the project and usage instructions.                   |
 | [_console.py_](console.py)                         | Command interpreter using the cmd module.                                         |     |
 | [_file_storage.py_](models/engine/file_storage.py) | Serializes instances to a JSON file and deserializes JSON file back to instances. |
-| [_models/**init**.py_](models/__init__.py)         | Init for reloading from JSON file to storage                                      |
+| [_/models/**init**.py_](models/__init__.py)        | Init for reloading from JSON file to storage                                      |
 | [_base_model.py_](models/base_model.py)            | Super class serving as the base for all subclasses.                               |
 | [_user.py_](models/user.py)                        | Sub class representing User instance.                                             |
 | [_city.py_](models/city.py)                        | Sub class representing City instance.                                             |
@@ -35,6 +35,7 @@ The third major component is the **BaseModel** super class, implemented through 
 | [_review.py_](models/review.py)                    | Sub class representing Review instance.                                           |
 | [_state.py_](models/state.py)                      | Sub class representing State instance.                                            |
 | [_amenity.py_](models/amenity.py)                  | Sub class representing User instance.                                             |
+| [_/tests_](tests)                                  | Folder containing all unittests for files.                                        |
 
 ## Commands
 
@@ -43,10 +44,10 @@ The third major component is the **BaseModel** super class, implemented through 
 | `create`   | Creates a new instance of the specified class, also prints id of the instance      |
 | `show`     | Print string representation of an instance based on the class and id               |
 | `all`      | Prints list of string representation of all instances or just from specified class |
+| `.all()`   | Prints list of string representation of all instances or just from specified class |
+| `.count()` | Prints total number of instances of a class or all instances                       |
 | `destroy`  | Delete an instance based on the class name and id                                  |
 | `update`   | Update values for an attribute of a specified instance from a class                |
-| `.count()` | Prints total number of instances of a class or all instances                       |
-| `.all()`   | Sub class representing User instance.                                              |
 | `quit`     | Exit console                                                                       |
 | `help`     | Display available commands                                                         |
 
@@ -71,13 +72,10 @@ The console will display a prompt (hbnb) indicating that the user can write and 
 ```
 $ ./console.py
 (hbnb) help
-
 Documented commands (type help <topic>):
 ========================================
-EOF  help  quit
+EOF  all  create  destroy  help  quit  show  update
 
-(hbnb)
-(hbnb)
 (hbnb) quit
 $
 ```
