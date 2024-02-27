@@ -1,4 +1,5 @@
 # Holberton-AirBnB_clone
+![Alt text](https://www.digital.ink/wp-content/uploads/airbnb_logo_detail.jpg)
 
 ## Description
 The Airbnb_clone consists of 3 major components. One of them is the command-line interface (CLI) application ***-console.py-*** designed to manage Airbnb-like property listings and user interactions. This console provides functionalities to create, retrieve, update, and delete data related to various instances of the Airbnb ecosystem, including users, properties, reviews, places, and more.
