@@ -35,17 +35,17 @@ The third major component is the **BaseModel** super class, implemented through 
 | [*state.py*](models/state.py) | Sub class representing State instance.|
 | [*amenity.py*](models/amenity.py) | Sub class representing User instance. |
 
-
 ## Commands
 
 | Commands   | Description                                                                                           |
 |-----------|-------------------------------------------------------------------------------------------------------|
 | `create`| Creates a new instance of the specified class, also prints id of the instance                         |
 | `show`  | Print string representation of an instance based on the class and id                                  |
-| `all`   | Prints list of string representation of all instances or just from specified class                     |
-| `destroy`| Delete an instance based on the class name and id                                                      |
-| `update`| Update values for an attribute of a specified instance from a class                                    |
-| `count()` | Prints total number of instances of a class or all instances                                           |
+| `all`   | Prints list of string representation of all instances or just from specified class                    |
+| `destroy`| Delete an instance based on the class name and id                                                    |
+| `update`| Update values for an attribute of a specified instance from a class                                   |
+| `count()` | Prints total number of instances of a class or all instances                                        |
+| `.all()`| Sub class representing User instance.                                                                 |
 
 ## Use 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -87,14 +87,14 @@ $ ./console.py
 (hbnb) create BaseModel
 119be863-6fe5-437e-a180-b9892e8746b8
 (hbnb) quit
-$ cat file.json ; echo ""
+$ cat file.json
 {"BaseModel.119be863-6fe5-437e-a180-b9892e8746b8": {"updated_at": "2019-02-17T2
 1:30:42.215277", "created_at": "2019-02-17T21:30:42.215277", "__class__": "Base
 Model", "id": "119be863-6fe5-437e-a180-b9892e8746b8"}}
 ```
 
 * **show**
-  * Usage: `show <class> <id>` or `<class>.show(<id>)`
+  * Usage: `show <class> <id>`
 
 ```
 $ ./console.py
@@ -106,32 +106,24 @@ $ ./console.py
 c3240b29f46', 'created_at': datetime.datetime(2019, 2, 17, 21, 34, 3, 635828), 
 'updated_at': datetime.datetime(2019, 2, 17, 21, 34, 3, 635828)}
 (hbnb) 
-(hbnb) User.show(1e32232d-5a63-4d92-8092-ac3240b29f46)
-[User] (1e32232d-5a63-4d92-8092-ac3240b29f46) {'id': '1e32232d-5a63-4d92-8092-a
-c3240b29f46', 'created_at': datetime.datetime(2019, 2, 17, 21, 34, 3, 635828), 
-'updated_at': datetime.datetime(2019, 2, 17, 21, 34, 3, 635828)}
-(hbnb) 
 ```
 
 * **destroy**
-  * Usage: `destroy <class> <id>` or `<class>.destroy(<id>)`
+  * Usage: `destroy <class> <id>`
 
 ```
 $ ./console.py
-(hbnb) create State
-d2d789cd-7427-4920-aaae-88cbcf8bffe2
 (hbnb) create Place
 3e-8329-4f47-9947-dca80c03d3ed
-(hbnb)
-(hbnb) destroy State d2d789cd-7427-4920-aaae-88cbcf8bffe2
-(hbnb) Place.destroy(03486a3e-8329-4f47-9947-dca80c03d3ed)
+(hbnb) destroy Place 3e-8329-4f47-9947-dca80c03d3ed
+(hbnb) 
 (hbnb) quit
-$ cat file.json ; echo ""
+$ cat file.json
 {}
 ```
 
 * **all**
-  * Usage: `all` or `all <class>` or `<class>.all()`
+  * Usage: `all` or `all <class>` or `<class>.all()` or `.all()`
 
 ```
 $ ./console.py
@@ -173,11 +165,12 @@ c3-f4bf-425e-b1d4-165f52c6ff81) {'updated_at': datetime.datetime(2019, 2, 17, 2
 537-489b-956e-22da455cbee8) {'updated_at': datetime.datetime(2019, 2, 17, 21, 4
 3, 56, 899348), 'created_at': datetime.datetime(2019, 2, 17, 21, 43, 56, 899348
 ), 'id': 'fce2124c-8537-489b-956e-22da455cbee8'}"]
-(hbnb) 
+(hbnb) quit
+$
 ```
 
 * **count**
-  * Usage: `count <class>` or `<class>.count()`
+  * Usage: `count <class>` or `<class>.count()` or `.count()`
 
 ```
 $ ./console.py
@@ -192,13 +185,12 @@ aa229cbb-5b19-4c32-8562-f90a3437d301
 2
 (hbnb) city.count()
 1
-(hbnb) 
+(hbnb) quit
+$
 ```
 
 * **update**
-  * Usage: `update <class> <id> <attribute name> "<attribute value>"` or
-`<class>.update(<id>, <attribute name>, <attribute value>)` or `<class>.update(
-<id>, <attribute dictionary>)`.j
+  * Usage: `update <class> <id> <attribute name> "<attribute value>"`
 
 ```
 $ ./console.py
@@ -211,28 +203,13 @@ $ ./console.py
 2019, 2, 17, 21, 54, 39, 234382), 'first_name': 'Holberton', 'updated_at': date
 time.datetime(2019, 2, 17, 21, 54, 39, 234382), 'id': '6f348019-0499-420f-8eec-
 ef0fdc863c02'}
-(hbnb)
-(hbnb) User.update(6f348019-0499-420f-8eec-ef0fdc863c02, address, "98 Mission S
-t")
-(hbnb) User.show(6f348019-0499-420f-8eec-ef0fdc863c02)
-[User] (6f348019-0499-420f-8eec-ef0fdc863c02) {'created_at': datetime.datetime(
-2019, 2, 17, 21, 54, 39, 234382), 'address': '98 Mission St', 'first_name': 'Ho
-lberton', 'updated_at': datetime.datetime(2019, 2, 17, 21, 54, 39, 234382), 'id
-': '6f348019-0499-420f-8eec-ef0fdc863c02'}
-(hbnb)
-(hbnb) User.update(6f348019-0499-420f-8eec-ef0fdc863c02, {'email': 'holberton@h
-olberton.com', 'last_name': 'School'})
-[User] (6f348019-0499-420f-8eec-ef0fdc863c02) {'email': 'holberton@holberton.co
-m', 'first_name': 'Holberton', 'updated_at': datetime.datetime(2019, 2, 17, 21,
-54, 39, 234382), 'address': '98 Mission St', 'last_name': 'School', 'id': '6f34
-8019-0499-420f-8eec-ef0fdc863c02', 'created_at': datetime.datetime(2019, 2, 17,
-21, 54, 39, 234382)}
-(hbnb) 
+(hbnb) quit
+$
 ```
 
 ## Resources
 
- - *[CMD Module](https://docs.python.org/3/library/cmd.html)*
+- *[CMD Module](https://docs.python.org/3/library/cmd.html)*
 - *[UUID Module](https://docs.python.org/3/library/uuid.html)*
 - *[Datetime Module](https://docs.python.org/3/library/datetime.html)*
 - *[args/kwargs](https://yasoob.me/2013/08/04/args-and-kwargs-in-python-explained/)*
