@@ -1,5 +1,5 @@
 # Holberton-AirBnB_clone
-!https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20240227%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20240227T103738Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=116ac1ced4e13c97d9c07d0c8523fb5d5b6db1ee10d273bc21727408aee9e15f
+! [AirbnbClone Logo] https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20240227%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20240227T103738Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=116ac1ced4e13c97d9c07d0c8523fb5d5b6db1ee10d273bc21727408aee9e15f
 
 ## Description
 The Airbnb Console is a command-line interface (CLI) application designed to manage Airbnb-like property listings and user interactions. This console provides functionalities to create, retrieve, update, and delete data related to various instances of the Airbnb ecosystem, including users, properties, reviews, places, and more.
@@ -48,7 +48,7 @@ At the core of the application lies the FileStorage engine, implemented through 
 ## Use 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-## Installing
+Installing:
 
 You will need to clone the repository of the project from Github. This will contain the simple shell program and all of its dependencies.
 
@@ -57,7 +57,7 @@ git clone git@github.com:Antoniofdjs/holbertonschool-AirBnB_clone.git
 ```
 After cloning the repository you will have a folder called AirBnB_clone. In here there will be several files that allow the program to work.
 
-##This is how it would work:
+## This is how it would work:
 
 The console will display a prompt (hbnb) indicating that the user can write and execute a command. After the command is run, the prompt will appear again a wait for a new command. This can go indefinitely as long as the user does not exit the program.
 
