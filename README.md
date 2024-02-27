@@ -236,9 +236,3 @@ m', 'first_name': 'Holberton', 'updated_at': datetime.datetime(2019, 2, 17, 21,
 - *[args/kwargs](https://yasoob.me/2013/08/04/args-and-kwargs-in-python-explained/)*
 - *[Python Test Sheets](https://www.pythonsheets.com/notes/python-tests.html)*
 
-
-
-## Credits
-
- - *[Antonio De Jesus Santiago](https://github.com/Antoniofdjs)*
- - *[Juan Gabriel Collazo](https://github.com/juancollazo5)*
