@@ -17,7 +17,7 @@ The third major component is the **BaseModel** super class, implemented through 
 - [Examples](#examples)
 - [Resources](#resources)
 - [Credits](#credits)
-  
+
 
 ## Files
 
@@ -37,14 +37,14 @@ The third major component is the **BaseModel** super class, implemented through 
 
 ## Commands
 
-| Commands   | Description                                                                                           |
-|-----------|-------------------------------------------------------------------------------------------------------|
+| Commands   | Description                                                                                        |
+|-----------|-----------------------------------------------------------------------------------------------------|
 | `create`| Creates a new instance of the specified class, also prints id of the instance                         |
 | `show`  | Print string representation of an instance based on the class and id                                  |
 | `all`   | Prints list of string representation of all instances or just from specified class                    |
 | `destroy`| Delete an instance based on the class name and id                                                    |
 | `update`| Update values for an attribute of a specified instance from a class                                   |
-| `count()` | Prints total number of instances of a class or all instances                                        |
+| `.count()` | Prints total number of instances of a class or all instances                                       |
 | `.all()`| Sub class representing User instance.                                                                 |
 
 ## Use 
