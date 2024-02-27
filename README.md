@@ -46,7 +46,8 @@ The third major component is the **BaseModel** super class, implemented through 
 | `update`| Update values for an attribute of a specified instance from a class                                   |
 | `.count()` | Prints total number of instances of a class or all instances                                       |
 | `.all()`| Sub class representing User instance.                                                                 |
-
+| `quit`| Exit console                                                                                            |
+| `help`| Display available commands                                                                              |
 ## Use 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
