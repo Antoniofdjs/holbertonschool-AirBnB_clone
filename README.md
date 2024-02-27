@@ -57,7 +57,9 @@ To install:
 1. Open a terminal.
 2. Navigate to the directory where you want to clone the repository.
 3. Run the following command: `git clone git@github.com:Antoniofdjs/holbertonschool-AirBnB_clone.git`
-![Alt text](images/Vs_code_example.PNG)
+
+   <img src="images/Vs_code_example.PNG" alt="VS Code Example">
+
 
 ## Use 
 To start using the console...
