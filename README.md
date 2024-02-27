@@ -67,13 +67,10 @@ The console will display a prompt (hbnb) indicating that the user can write and 
 ```
 $ ./console.py
 (hbnb) help
-
 Documented commands (type help <topic>):
 ========================================
-EOF  help  quit
+EOF  all  create  destroy  help  quit  show  update
 
-(hbnb) 
-(hbnb) 
 (hbnb) quit
 $
 ```
