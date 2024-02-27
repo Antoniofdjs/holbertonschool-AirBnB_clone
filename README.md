@@ -75,9 +75,6 @@ EOF  help  quit
 $
 ```
 
-Basic usage example
-
-
 ## Examples
 
 * **create**
