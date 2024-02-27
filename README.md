@@ -180,9 +180,8 @@ $ ./console.py
 aa229cbb-5b19-4c32-8562-f90a3437d301
 (hbnb) create City
 22a51611-17bd-4d8f-ba1b-3bf07d327208
-(hbnb) 
-(hbnb) count Place
-2
+(hbnb) .count()
+3
 (hbnb) city.count()
 1
 (hbnb) quit
