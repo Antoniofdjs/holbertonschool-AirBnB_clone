@@ -170,7 +170,7 @@ $
 ```
 
 * **count**
-  * Usage: `count <class>` or `<class>.count()` or `.count()`
+  * Usage: `<class>.count()` or `.count()`
 
 ```
 $ ./console.py
