@@ -1,19 +1,18 @@
 # Holberton-AirBnB_clone
-![Alt text](https://www.digital.ink/wp-content/uploads/airbnb_logo_detail.jpg)
+![AirbnbClone Logo](https://www.tabbykatz.com/hbnb.png)
 
 ## Description
 The Airbnb_clone consists of 3 major components. One of them is the command-line interface (CLI) application ***-console.py-*** designed to manage Airbnb-like property listings and user interactions. This console provides functionalities to create, retrieve, update, and delete data related to various instances of the Airbnb ecosystem, including users, properties, reviews, places, and more.
 
 At the core of the application lies the **FileStorage** engine, implemented through the ***-file_storage.py-*** module. This engine is managing data storage and retrieval operations. It handles the serialization and deserialization of instances to and from a JSON file, serving as a local database for the application. It offers functionalities such as retrieving all stored instances, saving the current state of data to the JSON file, and reloading data from the file into memory.The reload functionality is enabled by the file from: ***-models/__init__.py-***
 
-The third major component is the **BaseModel** super class, implemented through the ***-base_model.py-*** module. BaseModel allows to create multiple instances based on it self or from the other subclasses. It assigns a random generated id with UUID, the date in wich the instances was created and the date when it was last updated. Any instance created from BaseModel will be saved to the storage
+The third major component is the **BaseModel** super class, implemented through the ***-base_model.py-*** module. BaseModel allows to create multiple instances based on it self or from the other subclasses. It assigns a random generated id with UUID, the date in wich the instances was created and the date when it was last updated. Any instance created from BaseModel will be saved to the storage.
 
 ### Table of Contents
 
 - [Description](#description)
 - [Files](#files)
 - [Commands](#commands)
-- [Install](#install)
 - [Use](#use)
 - [Examples](#examples)
 - [Resources](#resources)
@@ -48,53 +47,186 @@ The third major component is the **BaseModel** super class, implemented through 
 | `update`| Update values for an attribute of a specified instance from a class                                    |
 | `count()` | Prints total number of instances of a class or all instances                                           |
 
-## Install
-
-This project was built in Python 3.12.1.
-
-To install:
-
-1. Open a terminal.
-2. Navigate to the directory where you want to clone the repository.
-3. Run the following command: `git clone git@github.com:Antoniofdjs/holbertonschool-AirBnB_clone.git`
-
-   <img src="images/Vs_code_example.PNG" alt="VS Code Example">
-
-
 ## Use 
-To start using the console...
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
+Installing:
 
-```
-exampleeee hereee
-```
-In the console running
+You will need to clone the repository of the project from Github. This will contain the simple shell program and all of its dependencies.
 
 ```
-usagee examplee
+git clone git@github.com:Antoniofdjs/holbertonschool-AirBnB_clone.git
 ```
-To run .count() command
+After cloning the repository you will have a folder called AirBnB_clone. In here there will be several files that allow the program to work.
+
+## This is how it would work:
+
+The console will display a prompt (hbnb) indicating that the user can write and execute a command. After the command is run, the prompt will appear again a wait for a new command. This can go indefinitely as long as the user does not exit the program.
 
 ```
-(hbnb) .count()
-```
-Basic usage example
+$ ./console.py
+(hbnb) help
 
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+
+(hbnb) 
+(hbnb) 
+(hbnb) quit
+$
+```
 
 ## Examples
 
+* **create**
+  * Usage: `create <class>`
+
 ```
-(hbnb) all
-[]     
+$ ./console.py
+(hbnb) create BaseModel
+119be863-6fe5-437e-a180-b9892e8746b8
+(hbnb) quit
+$ cat file.json ; echo ""
+{"BaseModel.119be863-6fe5-437e-a180-b9892e8746b8": {"updated_at": "2019-02-17T2
+1:30:42.215277", "created_at": "2019-02-17T21:30:42.215277", "__class__": "Base
+Model", "id": "119be863-6fe5-437e-a180-b9892e8746b8"}}
+```
+
+* **show**
+  * Usage: `show <class> <id>` or `<class>.show(<id>)`
+
+```
+$ ./console.py
 (hbnb) create User
-be9d66bf-a5a3-4c5d-8de5-6afb86bad424
+1e32232d-5a63-4d92-8092-ac3240b29f46
+(hbnb)
+(hbnb) show User 1e32232d-5a63-4d92-8092-ac3240b29f46
+[User] (1e32232d-5a63-4d92-8092-ac3240b29f46) {'id': '1e32232d-5a63-4d92-8092-a
+c3240b29f46', 'created_at': datetime.datetime(2019, 2, 17, 21, 34, 3, 635828), 
+'updated_at': datetime.datetime(2019, 2, 17, 21, 34, 3, 635828)}
+(hbnb) 
+(hbnb) User.show(1e32232d-5a63-4d92-8092-ac3240b29f46)
+[User] (1e32232d-5a63-4d92-8092-ac3240b29f46) {'id': '1e32232d-5a63-4d92-8092-a
+c3240b29f46', 'created_at': datetime.datetime(2019, 2, 17, 21, 34, 3, 635828), 
+'updated_at': datetime.datetime(2019, 2, 17, 21, 34, 3, 635828)}
+(hbnb) 
+```
+
+* **destroy**
+  * Usage: `destroy <class> <id>` or `<class>.destroy(<id>)`
+
+```
+$ ./console.py
+(hbnb) create State
+d2d789cd-7427-4920-aaae-88cbcf8bffe2
+(hbnb) create Place
+3e-8329-4f47-9947-dca80c03d3ed
+(hbnb)
+(hbnb) destroy State d2d789cd-7427-4920-aaae-88cbcf8bffe2
+(hbnb) Place.destroy(03486a3e-8329-4f47-9947-dca80c03d3ed)
+(hbnb) quit
+$ cat file.json ; echo ""
+{}
+```
+
+* **all**
+  * Usage: `all` or `all <class>` or `<class>.all()`
+
+```
+$ ./console.py
+(hbnb) create BaseModel
+fce2124c-8537-489b-956e-22da455cbee8
+(hbnb) create BaseModel
+450490fd-344e-47cf-8342-126244c2ba99
+(hbnb) create User
+b742dbc3-f4bf-425e-b1d4-165f52c6ff81
+(hbnb) create User
+8f2d75c8-fb82-48e1-8ae5-2544c909a9fe
+(hbnb)
+(hbnb) all BaseModel
+["[BaseModel] (450490fd-344e-47cf-8342-126244c2ba99) {'updated_at': datetime.da
+tetime(2019, 2, 17, 21, 45, 5, 963516), 'created_at': datetime.datetime(2019, 2
+, 17, 21, 45, 5, 963516), 'id': '450490fd-344e-47cf-8342-126244c2ba99'}", "[Bas
+eModel] (fce2124c-8537-489b-956e-22da455cbee8) {'updated_at': datetime.datetime
+(2019, 2, 17, 21, 43, 56, 899348), 'created_at': datetime.datetime(2019, 2, 17,
+21, 43, 56, 899348), 'id': 'fce2124c-8537-489b-956e-22da455cbee8'}"]
+(hbnb)
+(hbnb) User.all()
+["[User] (8f2d75c8-fb82-48e1-8ae5-2544c909a9fe) {'updated_at': datetime.datetim
+e(2019, 2, 17, 21, 44, 44, 428413), 'created_at': datetime.datetime(2019, 2, 17
+, 21, 44, 44, 428413), 'id': '8f2d75c8-fb82-48e1-8ae5-2544c909a9fe'}", "[User] 
+(b742dbc3-f4bf-425e-b1d4-165f52c6ff81) {'updated_at': datetime.datetime(2019, 2
+, 17, 21, 44, 15, 974608), 'created_at': datetime.datetime(2019, 2, 17, 21, 44,
+15, 974608), 'id': 'b742dbc3-f4bf-425e-b1d4-165f52c6ff81'}"]
+(hbnb) 
 (hbnb) all
-["[User] (be9d66bf-a5a3-4c5d-8de5-6afb86bad424) {'id': 'be9d66bf-a5a3-4c5d-8de5-6afb86bad424',
-'created_at': datetime.datetime(2024, 2, 25, 19, 42, 26, 233003),
-'updated_at': datetime.datetime(2024, 2, 25, 19, 42, 26, 233003)}"]
-(hbnb) destroy User be9d66bf-a5a3-4c5d-8de5-6afb86bad424
-(hbnb) all                                               
-[]     
+["[User] (8f2d75c8-fb82-48e1-8ae5-2544c909a9fe) {'updated_at': datetime.datetim
+e(2019, 2, 17, 21, 44, 44, 428413), 'created_at': datetime.datetime(2019, 2, 17
+, 21, 44, 44, 428413), 'id': '8f2d75c8-fb82-48e1-8ae5-2544c909a9fe'}", "[BaseMo
+del] (450490fd-344e-47cf-8342-126244c2ba99) {'updated_at': datetime.datetime(20
+19, 2, 17, 21, 45, 5, 963516), 'created_at': datetime.datetime(2019, 2, 17, 21,
+45, 5, 963516), 'id': '450490fd-344e-47cf-8342-126244c2ba99'}", "[User] (b742db
+c3-f4bf-425e-b1d4-165f52c6ff81) {'updated_at': datetime.datetime(2019, 2, 17, 2
+1, 44, 15, 974608), 'created_at': datetime.datetime(2019, 2, 17, 21, 44, 15, 97
+4608), 'id': 'b742dbc3-f4bf-425e-b1d4-165f52c6ff81'}", "[BaseModel] (fce2124c-8
+537-489b-956e-22da455cbee8) {'updated_at': datetime.datetime(2019, 2, 17, 21, 4
+3, 56, 899348), 'created_at': datetime.datetime(2019, 2, 17, 21, 43, 56, 899348
+), 'id': 'fce2124c-8537-489b-956e-22da455cbee8'}"]
+(hbnb) 
+```
+
+* **count**
+  * Usage: `count <class>` or `<class>.count()`
+
+```
+$ ./console.py
+(hbnb) create Place
+12c73223-f3d3-4dec-9629-bd19c8fadd8a
+(hbnb) create Place
+aa229cbb-5b19-4c32-8562-f90a3437d301
+(hbnb) create City
+22a51611-17bd-4d8f-ba1b-3bf07d327208
+(hbnb) 
+(hbnb) count Place
+2
+(hbnb) city.count()
+1
+(hbnb) 
+```
+
+* **update**
+  * Usage: `update <class> <id> <attribute name> "<attribute value>"` or
+`<class>.update(<id>, <attribute name>, <attribute value>)` or `<class>.update(
+<id>, <attribute dictionary>)`.j
+
+```
+$ ./console.py
+(hbnb) create User
+6f348019-0499-420f-8eec-ef0fdc863c02
+(hbnb)
+(hbnb) update User 6f348019-0499-420f-8eec-ef0fdc863c02 first_name "Holberton"
+(hbnb) show User 6f348019-0499-420f-8eec-ef0fdc863c02
+[User] (6f348019-0499-420f-8eec-ef0fdc863c02) {'created_at': datetime.datetime(
+2019, 2, 17, 21, 54, 39, 234382), 'first_name': 'Holberton', 'updated_at': date
+time.datetime(2019, 2, 17, 21, 54, 39, 234382), 'id': '6f348019-0499-420f-8eec-
+ef0fdc863c02'}
+(hbnb)
+(hbnb) User.update(6f348019-0499-420f-8eec-ef0fdc863c02, address, "98 Mission S
+t")
+(hbnb) User.show(6f348019-0499-420f-8eec-ef0fdc863c02)
+[User] (6f348019-0499-420f-8eec-ef0fdc863c02) {'created_at': datetime.datetime(
+2019, 2, 17, 21, 54, 39, 234382), 'address': '98 Mission St', 'first_name': 'Ho
+lberton', 'updated_at': datetime.datetime(2019, 2, 17, 21, 54, 39, 234382), 'id
+': '6f348019-0499-420f-8eec-ef0fdc863c02'}
+(hbnb)
+(hbnb) User.update(6f348019-0499-420f-8eec-ef0fdc863c02, {'email': 'holberton@h
+olberton.com', 'last_name': 'School'})
+[User] (6f348019-0499-420f-8eec-ef0fdc863c02) {'email': 'holberton@holberton.co
+m', 'first_name': 'Holberton', 'updated_at': datetime.datetime(2019, 2, 17, 21,
+54, 39, 234382), 'address': '98 Mission St', 'last_name': 'School', 'id': '6f34
+8019-0499-420f-8eec-ef0fdc863c02', 'created_at': datetime.datetime(2019, 2, 17,
+21, 54, 39, 234382)}
 (hbnb) 
 ```
 
@@ -106,9 +238,7 @@ be9d66bf-a5a3-4c5d-8de5-6afb86bad424
 - *[args/kwargs](https://yasoob.me/2013/08/04/args-and-kwargs-in-python-explained/)*
 - *[Python Test Sheets](https://www.pythonsheets.com/notes/python-tests.html)*
 
-
-
-## Credits
+  ## Credits
 
  - *[Antonio De Jesus Santiago](https://github.com/Antoniofdjs)*
  - *[Juan Gabriel Collazo](https://github.com/juancollazo5)*
