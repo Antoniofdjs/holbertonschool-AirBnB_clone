@@ -50,6 +50,14 @@ The third major component is the **BaseModel** super class, implemented through 
 
 ## Install
 
+This project was built in Python 3.12.1.
+
+To install:
+
+1. Open a terminal.
+2. Navigate to the directory where you want to clone the repository.
+3. Run the following command: `git clone git@github.com:Antoniofdjs/holbertonschool-AirBnB_clone.git`
+
 ## Use 
 To start using the console...
 
