@@ -1,5 +1,5 @@
 # Holberton-AirBnB_clone
-![AirbnbClone Logo](https://images.app.goo.gl/TNLWaz2VqRZ8dMav5)
+![AirbnbClone Logo](https://www.tabbykatz.com/hbnb.png)
 
 ## Description
 The Airbnb Console is a command-line interface (CLI) application designed to manage Airbnb-like property listings and user interactions. This console provides functionalities to create, retrieve, update, and delete data related to various instances of the Airbnb ecosystem, including users, properties, reviews, places, and more.
