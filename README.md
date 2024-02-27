@@ -13,6 +13,7 @@ The third major component is the **BaseModel** super class, implemented through 
 - [Description](#description)
 - [Files](#files)
 - [Commands](#commands)
+- [Install](#install)
 - [Use](#use)
 - [Examples](#examples)
 - [Resources](#resources)
@@ -46,6 +47,8 @@ The third major component is the **BaseModel** super class, implemented through 
 | `destroy`| Delete an instance based on the class name and id                                                      |
 | `update`| Update values for an attribute of a specified instance from a class                                    |
 | `count()` | Prints total number of instances of a class or all instances                                           |
+
+## Install
 
 ## Use 
 To start using the console...
